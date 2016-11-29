@@ -1,0 +1,15 @@
+{
+  "entityName":"Motorama_catalog_tyre_diameter",
+  "tableName":"MOTORAMA_CATALOG_TYRE_DIAMETER",
+  "tableType":"TABLE",
+  "serviceName":"motorama_catalog_tyre_diameter.js",
+  "libraryName":"motorama_catalog_tyre_diameter_lib.js",
+  "specification":"motorama_catalog_tyre_diameter.swagger",
+  "getEnabled":"true",
+  "postEnabled":"true",
+  "putEnabled":"true",
+  "deleteEnabled":"true",
+  "countEnabled":"true",
+  "offsetAndLimitEnabled":"true",
+  "metadataEnabled":"true"
+}

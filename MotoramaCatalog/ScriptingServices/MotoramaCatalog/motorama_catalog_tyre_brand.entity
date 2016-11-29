@@ -1,0 +1,15 @@
+{
+  "entityName":"Motorama_catalog_tyre_brand",
+  "tableName":"MOTORAMA_CATALOG_TYRE_BRAND",
+  "tableType":"TABLE",
+  "serviceName":"motorama_catalog_tyre_brand.js",
+  "libraryName":"motorama_catalog_tyre_brand_lib.js",
+  "specification":"motorama_catalog_tyre_brand.swagger",
+  "getEnabled":"true",
+  "postEnabled":"true",
+  "putEnabled":"true",
+  "deleteEnabled":"true",
+  "countEnabled":"true",
+  "offsetAndLimitEnabled":"true",
+  "metadataEnabled":"true"
+}

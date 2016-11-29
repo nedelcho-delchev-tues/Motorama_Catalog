@@ -1,0 +1,23 @@
+{
+  "tableName":"MOTORAMA_CATALOG_TYRE_RATIO",
+  "columns":
+    [
+      {
+        "name":"MOTORAMA_CATALOG_TYRE_RATIO_ID",
+        "type":"INTEGER",
+        "length":"0",
+        "notNull":"true",
+        "primaryKey":"true",
+        "defaultValue":""
+      }
+      ,
+      {
+        "name":"MOTORAMA_CATALOG_TYRE_RATIO_VALUE",
+        "type":"INTEGER",
+        "length":"0",
+        "notNull":"true",
+        "primaryKey":"false",
+        "defaultValue":""
+      }
+    ]
+}
