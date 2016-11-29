@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Add tyre</title>
+<title>Add Tyre</title>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -37,7 +37,7 @@
 	<div id="wrap" ng-controller="ManageController">
 		<div class="row">
 			<div class="col-lg-12">
-		    	<h1 class="page-header">Add tyre</h1>
+		    	<h1 class="page-header">Add Tyre</h1>
 			</div>
 		</div>
 		<div class="container">
@@ -134,7 +134,29 @@
 		angular.module('page').controller('ManageController', function ($scope, $http) {
 			
 			var url = '../../js/MotoramaCatalog/motorama_catalog_tyre.js';
-
+			var urlBrand = '../../js/MotoramaCatalog/motorama_catalog_tyre_brand.js';
+	      	var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
+	      	var urlRatio = '../../js/MotoramaCatalog/motorama_catalog_tyre_ratio.js';
+	      	var urlWidth = '../../js/MotoramaCatalog/motorama_catalog_tyre_width.js';
+      	
+	      	$http.get(urlBrand)
+	      		.success(function(dataBrand) {
+	      			$scope.dataBrand = dataBrand;
+	      		});
+	      	$http.get(urlDiameter)
+	      		.success(function(dataDiameter) {
+	      			$scope.dataDiameter = dataDiameter;
+	      		});
+	      	$http.get(urlRatio)
+	      		.success(function(dataRatio) {
+	      			$scope.dataRatio = dataRatio;
+	      		});
+	      	$http.get(urlWidth)
+	      		.success(function(dataWidth) {
+	      			$scope.dataWidth = dataWidth;
+	      		});    
+				
+				
 			$http.get(url)
 				.success(function(data){
 					$scope.data = data;

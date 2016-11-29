@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="page">
    <head>
       <meta http-equiv="content-type" content="text/html;charset=utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,16 +38,8 @@
          </div>
          <!-- /.container -->
       </nav>
-      <div class="container">
+      <div class="container" ng-controller="ListController">
          <div class="row">
-            <div class="col-md-3">
-               <p class="lead">Shop Name</p>
-               <div class="list-group">
-                  <a href="#" class="list-group-item">Printable</a>
-                  <a href="#" class="list-group-item">Cupcake Wrappers</a>
-                  <a href="#" class="list-group-item">Authentic Dragon Bones</a>
-               </div>
-            </div>
             <div class="col-md-9">
                <form class="form-horizontal">
                   <fieldset>
@@ -59,15 +50,15 @@
                         <label class="col-md-2 control-label" for="tyre_width">Width</label>
                         <div class="col-md-2">
                            <select id="tyre_width" name="tyre_width" class="form-control">
-                              <option value="1">Width</option>
-                              <option value="2"></option>
+                              <option value="">Width</option>
+                              <option ng-repeat="entry in dataWidth" value="{{entry.motorama_catalog_tyre_width_id}}">{{entry.motorama_catalog_tyre_width_value}}</option>
                            </select>
                         </div>
                         <label class="col-md-2 control-label" for="tyre_diameter">Diameter</label>
                         <div class="col-md-2">
                            <select id="tyre_diameter" name="tyre_diameter" class="form-control">
-                              <option value="1">Diameter</option>
-                              <option value="2">Option two</option>
+                              <option value="">Diameter</option>
+                              <option ng-repeat="entry in dataDiameter" value="{{entry.motorama_catalog_tyre_diameter_id}}">{{entry.motorama_catalog_tyre_diameter_value}}</option>
                            </select>
                         </div>
                      </div>
@@ -75,22 +66,22 @@
                         <label class="col-md-2 control-label" for="tyre_brand">Brand</label>
                         <div class="col-md-2">
                            <select id="tyre_brand" name="tyre_brand" class="form-control">
-                              <option value="1">Brand</option>
-                              <option value="2">Option two</option>
+                              <option value="">Brand</option>
+                              <option ng-repeat="entry in dataBrand" value="{{entry.motorama_catalog_tyre_brand_id}}">{{entry.motorama_catalog_tyre_brand_name}}</option>
                            </select>
                         </div>
                         <label class="col-md-2 control-label" for="tyre_brand">Ratio</label>
                         <div class="col-md-2">
                            <select id="tyre_brand" name="tyre_brand" class="form-control">
-                              <option value="1">Ratio</option>
-                              <option value="2">Option two</option>
+                              <option value="">Ratio</option>
+                              <option ng-repeat="entry in dataRatio" value="{{entry.motorama_catalog_tyre_ratio_id}}">{{entry.motorama_catalog_tyre_ratio_value}}</option>
                            </select>
                         </div>
-                        <div class="form-group">
-                        	<div class="col-md-4">
-                           		<a onClick="yourFunction();" class="search-button">SHOW RESULTS</a> 
-                        	</div>
-                    	 </div>
+                     </div>
+                     <div class="col-md-4 offset-md-4"></div>
+                     <div class="col-md-4 offset-md-4"></div>
+                     <div class="col-md-4 offset-md-4">
+                        <a onClick="yourFunction();" class="search-button">SHOW RESULTS</a> 
                      </div>
                   </fieldset>
                </form>
@@ -114,4 +105,64 @@
       <script src="js/jquery-1.10.2.js"></script>
       <script src="js/bootstrap.js"></script>
    </body>
+   <!-- JavaScript -->
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+   <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script src="js/jquery-1.10.2.js"></script>
+   <script src="js/bootstrap.js"></script>
+   </body>
+   <script type="text/javascript">
+      angular.module('page', ['ngAnimate', 'ui.bootstrap']);
+      angular.module('page').controller('ListController', function ($scope, $http) {
+      	
+      	var urlTyre = '../../js/MotoramaCatalog/motorama_catalog_tyre.js';
+      	var urlBrand = '../../js/MotoramaCatalog/motorama_catalog_tyre_brand.js';
+      	var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
+      	var urlRatio = '../../js/MotoramaCatalog/motorama_catalog_tyre_ratio.js';
+      	var urlWidth = '../../js/MotoramaCatalog/motorama_catalog_tyre_width.js';
+      	
+      	$http.get(urlBrand)
+      		.success(function(dataBrand) {
+      			$scope.dataBrand = dataBrand;
+      		});
+      	$http.get(urlDiameter)
+      		.success(function(dataDiameter) {
+      			$scope.dataDiameter = dataDiameter;
+      		});
+      	$http.get(urlRatio)
+      		.success(function(dataRatio) {
+      			$scope.dataRatio = dataRatio;
+      		});
+      	$http.get(urlWidth)
+      		.success(function(dataWidth) {
+      			$scope.dataWidth = dataWidth;
+      		});      		
+      });
+   </script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+   <script>
+      $( document ).ready(function() {
+        $.getJSON("main.menu", function(data) {
+      $.each(data, function(i, item) {
+      	var itemContent = "";
+      	if (item.subMenu.length > 0) {
+      		itemContent += "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">" + item.name + " <b class=\"caret\"></b></a>";
+      		itemContent += "<ul class=\"dropdown-menu\">";
+      		$.each(item.subMenu, function(j, subitem) {
+      			itemContent += "<li><a href=\"" + subitem.link + "\" >" + subitem.name + "</a></li>";
+      		});
+      		itemContent += "</ul>";
+      	} else {
+      		itemContent += "<li><a href=\"" + item.link + "\" >" + item.name + "</a>";
+      	}
+      	itemContent += "</li>";
+      	$("#main-menu").append(itemContent);
+      });
+      });
+      });
+   </script>
 </html>
