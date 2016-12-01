@@ -51,7 +51,7 @@ a.search-button{
 	background:    -webkit-linear-gradient(#000, #fff);
 	background:    linear-gradient(#000, #fff);
 	border:        1px solid #000;
-	border-radius: 10px;
+	border-radius: 4px;
 	color:         #fff;
 	display:       inline-block;
 	width:         160px;
