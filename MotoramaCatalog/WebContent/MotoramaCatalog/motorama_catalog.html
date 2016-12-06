@@ -21,16 +21,20 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="#home">Start Bootstrap</a>
+               <a class="navbar-brand" href="motorama_catalog.html">Motorama</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                <ul class="nav navbar-nav">
-                  <li><a href="#about"></a>
+                  <li><a href="motorama_catalog_add_tyre.html">Add Tyre</a>
                   </li>
-                  <li><a href="#services">Services</a>
+                  <li><a href="motorama_catalog_add_brand.html">Add Brand</a>
                   </li>
-                  <li><a href="#contact">Contact</a>
+                  <li><a href="#motorama_catalog_add_diameter.html">Add Diameter</a>
+                  </li>
+                  <li><a href="#motorama_catalog_add_ratio.html">Add Ratio</a>
+                  </li>
+                  <li><a href="#motorama_catalog_add_width.html">Add Width</a>
                   </li>
                </ul>
             </div>
@@ -41,7 +45,7 @@
       <div class="container" ng-controller="ListController">
          <div class="row">
             <div class="col-md-9">
-               <form class="form-horizontal">
+               <form class="form-horizontal" ng-submit="GetData">
                   <fieldset>
                      <!-- Form Name -->
                      <legend>Search for tyres</legend>
@@ -49,39 +53,43 @@
                      <div class="form-group">
                         <label class="col-md-2 control-label" for="tyre_width">Width</label>
                         <div class="col-md-2">
-                           <select id="tyre_width" name="tyre_width" class="form-control">
+                           <select id="tyre_width" name="tyre_width" class="form-control" ng-model="selectedWidth"
+                              ng-options="width.motorama_catalog_tyre_width_id as width.motorama_catalog_tyre_width_value for width in dataWidth">
                               <option value="">Width</option>
-                              <option ng-repeat="entry in dataWidth" value="{{entry.motorama_catalog_tyre_width_id}}">{{entry.motorama_catalog_tyre_width_value}}</option>
                            </select>
                         </div>
                         <label class="col-md-2 control-label" for="tyre_diameter">Diameter</label>
                         <div class="col-md-2">
-                           <select id="tyre_diameter" name="tyre_diameter" class="form-control">
+                           <select id="tyre_diameter" name="tyre_diameter" class="form-control" ng-model="selectedDiameter"
+                           	  ng-options="diameter.motorama_catalog_tyre_diameter_id as diameter.motorama_catalog_tyre_diameter_value for diameter in dataDiameter">>
                               <option value="">Diameter</option>
-                              <option ng-repeat="entry in dataDiameter" value="{{entry.motorama_catalog_tyre_diameter_id}}">{{entry.motorama_catalog_tyre_diameter_value}}</option>
                            </select>
                         </div>
                      </div>
                      <div class="form-group">
                         <label class="col-md-2 control-label" for="tyre_brand">Brand</label>
                         <div class="col-md-2">
-                           <select id="tyre_brand" name="tyre_brand" class="form-control">
+                           <select id="tyre_brand" name="tyre_brand" class="form-control" ng-model="selectedBrand" 
+                              ng-options="brand.motorama_catalog_tyre_brand_id as brand.motorama_catalog_tyre_brand_name for brand in dataBrand">
                               <option value="">Brand</option>
-                              <option ng-repeat="entry in dataBrand" value="{{entry.motorama_catalog_tyre_brand_id}}">{{entry.motorama_catalog_tyre_brand_name}}</option>
                            </select>
                         </div>
                         <label class="col-md-2 control-label" for="tyre_brand">Ratio</label>
                         <div class="col-md-2">
-                           <select id="tyre_brand" name="tyre_brand" class="form-control">
+                           <select id="tyre_ratio" name="tyre_ratio" class="form-control", ng-model="selectedRatio"
+                              ng-options="ratio.motorama_catalog_tyre_ratio_id as ratio.motorama_catalog_tyre_ratio_value for ratio in dataRatio">
                               <option value="">Ratio</option>
-                              <option ng-repeat="entry in dataRatio" value="{{entry.motorama_catalog_tyre_ratio_id}}">{{entry.motorama_catalog_tyre_ratio_value}}</option>
                            </select>
                         </div>
                      </div>
                      <div class="col-md-4 offset-md-4"></div>
                      <div class="col-md-2"></div>
                      <div class="col-md-2 offset-md-4">
-                        <a onClick="yourFunction();" class="search-button">SHOW RESULTS</a> 
+                        <button id="search-button" name="search-button" class="btn btn-danger">Search Tyres</button>   
+                        <tt>{{selectedWidth}}</tt>
+                        <tt>{{selectedDiameter}}</tt>
+                        <tt>{{selectedBrand}}</tt>                        
+                        <tt>{{selectedRatio}}</tt>                        
                      </div>
                   </fieldset>
                </form>
@@ -116,30 +124,46 @@
    </body>
    <script type="text/javascript">
       angular.module('page', ['ngAnimate', 'ui.bootstrap']);
-      angular.module('page').controller('ListController', function ($scope, $http) {
+      angular.module('page').controller('ListController', function ($scope, $http, $location) {
       	
       	var urlTyre = '../../js/MotoramaCatalog/motorama_catalog_tyre.js';
       	var urlBrand = '../../js/MotoramaCatalog/motorama_catalog_tyre_brand.js';
       	var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
       	var urlRatio = '../../js/MotoramaCatalog/motorama_catalog_tyre_ratio.js';
       	var urlWidth = '../../js/MotoramaCatalog/motorama_catalog_tyre_width.js';
+      	var absUrl = $location.absUrl();
       	
-      	$http.get(urlBrand)
-      		.success(function(dataBrand) {
-      			$scope.dataBrand = dataBrand;
+      	console.log(absUrl);
+      	$http.get(urlWidth)
+      		.success(function(dataWidth) {
+      			$scope.dataWidth = dataWidth;
       		});
       	$http.get(urlDiameter)
       		.success(function(dataDiameter) {
       			$scope.dataDiameter = dataDiameter;
+      		});      		
+      	$http.get(urlBrand)
+      		.success(function(dataBrand) {
+      			$scope.dataBrand = dataBrand;
+      			console.log(dataBrand);
       		});
       	$http.get(urlRatio)
       		.success(function(dataRatio) {
       			$scope.dataRatio = dataRatio;
       		});
-      	$http.get(urlWidth)
-      		.success(function(dataWidth) {
-      			$scope.dataWidth = dataWidth;
-      		});      		
+      		
+      	function listTyres(){
+      	var finalUrl = urlTyre + '?tyreWidth' + $scope.selectedWidth + '?tyreDiameter' + $scope.selectedDiameter 
+      	 + '?tyreBrand' + $scope.selectedBrand + '?tyreWidth' + $scope.selectedRatio;
+      	 
+      	$http.get(finalUrl)    
+      		.success(function(data) {
+      			$scope.data = data;
+      			console.log(data);
+      		}); 
+      		$("#search-button").click(listTyres);
+      	}
+    
       });
    </script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

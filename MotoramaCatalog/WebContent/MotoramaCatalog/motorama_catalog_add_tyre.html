@@ -46,17 +46,15 @@
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th>MOTORAMA_CATALOG_TYRE_ID</th>
-						<th>MOTORAMA_CATALOG_TYRE_BRAND_ID</th>
-						<th>MOTORAMA_CATALOG_TYRE_DIAMETER_ID</th>
-						<th>MOTORAMA_CATALOG_TYRE_WIDTH_ID</th>
-						<th>MOTORAMA_CATALOG_TYRE_RATIO_ID</th>
+						<th>Tyre Brand</th>
+						<th>Tyre Diameter</th>
+						<th>Tyre Width</th>
+						<th>Tyre Ratio</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="selected-{{entry._selected_}}" ng-repeat="entry in data"
 						ng-click="showInfoForEntry(entry)">
-						<td>{{entry.motorama_catalog_tyre_id}}</td>
 						<td>{{entry.motorama_catalog_tyre_brand_id}}</td>
 						<td>{{entry.motorama_catalog_tyre_diameter_id}}</td>
 						<td>{{entry.motorama_catalog_tyre_width_id}}</td>
@@ -87,26 +85,22 @@
 			<div>
 				<!-- input form -->
 				<div>
-					<label>MOTORAMA_CATALOG_TYRE_ID</label>
-					<input type="text" class="form-control" 
-						ng-model="selectedEntry.motorama_catalog_tyre_id" readonly> <br>
-					<br>
-					<label>MOTORAMA_CATALOG_TYRE_BRAND_ID</label>
+					<label>Tyre Brand</label>
 					<input type="text" class="form-control" 
 						ng-model="selectedEntry.motorama_catalog_tyre_brand_id"
 						ng-readonly="operation == 'show'" required="required">
 					<br>
-					<label>MOTORAMA_CATALOG_TYRE_DIAMETER_ID</label>
+					<label>Tyre Diameter</label>
 					<input type="text" class="form-control" 
 						ng-model="selectedEntry.motorama_catalog_tyre_diameter_id"
 						ng-readonly="operation == 'show'" required="required">
 					<br>
-					<label>MOTORAMA_CATALOG_TYRE_WIDTH_ID</label>
+					<label>Tyre Width</label>
 					<input type="text" class="form-control" 
 						ng-model="selectedEntry.motorama_catalog_tyre_width_id"
 						ng-readonly="operation == 'show'" required="required">
 					<br>
-					<label>MOTORAMA_CATALOG_TYRE_RATIO_ID</label>
+					<label>Tyre Ratio</label>
 					<input type="text" class="form-control" 
 						ng-model="selectedEntry.motorama_catalog_tyre_ratio_id"
 						ng-readonly="operation == 'show'" required="required">
@@ -135,11 +129,11 @@
 			
 			var url = '../../js/MotoramaCatalog/motorama_catalog_tyre.js';
 			var urlBrand = '../../js/MotoramaCatalog/motorama_catalog_tyre_brand.js';
-	      	var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
-	      	var urlRatio = '../../js/MotoramaCatalog/motorama_catalog_tyre_ratio.js';
-	      	var urlWidth = '../../js/MotoramaCatalog/motorama_catalog_tyre_width.js';
-      	
-	      	$http.get(urlBrand)
+      		var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
+      		var urlRatio = '../../js/MotoramaCatalog/motorama_catalog_tyre_ratio.js';
+      		var urlWidth = '../../js/MotoramaCatalog/motorama_catalog_tyre_width.js';
+			
+			$http.get(urlBrand)
 	      		.success(function(dataBrand) {
 	      			$scope.dataBrand = dataBrand;
 	      		});

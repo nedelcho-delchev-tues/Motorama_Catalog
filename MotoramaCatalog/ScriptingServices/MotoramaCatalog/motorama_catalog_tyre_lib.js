@@ -82,7 +82,7 @@ exports.readMotorama_catalog_tyreEntity = function(id) {
 };
 
 // read all entities and print them as JSON array to response
-exports.readMotorama_catalog_tyreList = function(limit, offset, sort, desc) {
+exports.readMotorama_catalog_tyreList = function(limit, offset, sort, desc, tyreBrand, tyreDiameter, tyreRatio, tyreWidth) {
     var connection = datasource.getConnection();
     try {
         var result = [];
@@ -90,7 +90,7 @@ exports.readMotorama_catalog_tyreList = function(limit, offset, sort, desc) {
         if (limit !== null && offset !== null) {
             sql += " " + datasource.getPaging().genTopAndStart(limit, offset);
         }
-        sql += " * FROM MOTORAMA_CATALOG_TYRE";
+        sql += " * FROM MOTORAMA_CATALOG_TYRE";    
         if (sort !== null) {
             sql += " ORDER BY " + sort;
         }
