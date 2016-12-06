@@ -151,19 +151,19 @@
       		.success(function(dataRatio) {
       			$scope.dataRatio = dataRatio;
       		});
-      		
+
+        $(document).ready(function(){	
       	function listTyres(){
-      	var finalUrl = urlTyre + '?tyreWidth' + $scope.selectedWidth + '?tyreDiameter' + $scope.selectedDiameter 
-      	 + '?tyreBrand' + $scope.selectedBrand + '?tyreWidth' + $scope.selectedRatio;
-      	 
+      	var finalUrl = urlTyre + '?tyreWidth=' + $scope.selectedWidth + '&tyreDiameter=' + $scope.selectedDiameter + '&tyreBrand=' + $scope.selectedBrand + '&tyreRatio=' + $scope.selectedRatio;	
+        console.log(finalUrl);
       	$http.get(finalUrl)    
       		.success(function(data) {
       			$scope.data = data;
       			console.log(data);
       		}); 
-      		$("#search-button").click(listTyres);
       	}
-    
+      	      		$("#search-button").click(listTyres);
+		});
       });
    </script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

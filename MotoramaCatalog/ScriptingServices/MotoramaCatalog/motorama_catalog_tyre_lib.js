@@ -82,7 +82,7 @@ exports.readMotorama_catalog_tyreEntity = function(id) {
 };
 
 // read all entities and print them as JSON array to response
-exports.readMotorama_catalog_tyreList = function(limit, offset, sort, desc, tyreBrand, tyreDiameter, tyreRatio, tyreWidth) {
+exports.readMotorama_catalog_tyreList = function(limit, offset, sort, desc, tyreWidth, tyreDiameter, tyreBrand, tyreRatio) {
     var connection = datasource.getConnection();
     try {
         var result = [];
@@ -90,7 +90,19 @@ exports.readMotorama_catalog_tyreList = function(limit, offset, sort, desc, tyre
         if (limit !== null && offset !== null) {
             sql += " " + datasource.getPaging().genTopAndStart(limit, offset);
         }
-        sql += " * FROM MOTORAMA_CATALOG_TYRE";    
+        sql += " * FROM MOTORAMA_CATALOG_TYRE"; 
+       	if (tyreWidth !== null){
+        	sql+="WHERE MOTORAMA_CATALOG_TYRE.MOTORAMA_CATALOG_TYRE_WIDTH_ID = MOTORAMA_CATALOG_TYRE_WIDTH.MOTORAMA_CATALOG_TYRE_WIDTH_ID";
+        }  
+        if (tyreDiameter !== null){
+        	sql+="AND MOTORAMA_CATALOG_TYRE.MOTORAMA_CATALOG_TYRE_DIAMETER_ID = MOTORAMA_CATALOG_TYRE_DIAMETER.MOTORAMA_CATALOG_TYRE_DIAMETER_ID";
+        }
+        if (tyreBrand !== null){
+        	sql+="AND WHERE MOTORAMA_CATALOG_TYRE.MOTORAMA_CATALOG_TYRE_BRAND_ID = MOTORAMA_CATALOG_TYRE_BRAND.MOTORAMA_CATALOG_TYRE_BRAND_ID";
+        }
+        if (tyreBrand !== null){
+        	sql+="WHERE MOTORAMA_CATALOG_TYRE.MOTORAMA_CATALOG_TYRE_RATIO_ID = MOTORAMA_CATALOG_TYRE_RATIO.MOTORAMA_CATALOG_TYRE_RATIO_ID";
+        }
         if (sort !== null) {
             sql += " ORDER BY " + sort;
         }
