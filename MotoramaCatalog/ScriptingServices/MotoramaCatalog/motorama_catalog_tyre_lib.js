@@ -84,6 +84,7 @@ exports.readMotorama_catalog_tyreEntity = function(id) {
 // read all entities and print them as JSON array to response
 exports.readMotorama_catalog_tyreList = function(limit, offset, sort, desc, tyreWidth, tyreDiameter, tyreBrand, tyreRatio) {
     var connection = datasource.getConnection();
+    var flagWidth = 0, flagDiameter = 0, flagBrand = 0, flagRatio = 0;
     try {
         var result = [];
         var sql = "SELECT ";
@@ -92,16 +93,35 @@ exports.readMotorama_catalog_tyreList = function(limit, offset, sort, desc, tyre
         }
         sql += " * FROM MOTORAMA_CATALOG_TYRE"; 
        	if (tyreWidth !== null){
-        	sql+="WHERE MOTORAMA_CATALOG_TYRE.MOTORAMA_CATALOG_TYRE_WIDTH_ID = MOTORAMA_CATALOG_TYRE_WIDTH.MOTORAMA_CATALOG_TYRE_WIDTH_ID";
+        	sql+=" inner join motorama_catalog_tyre_width on motorama_catalog_tyre.motorama_catalog_tyre_width_id = motorama_catalog_tyre_width.motorama_catalog_tyre_width_id";
+        	flagWidth = 1;
         }  
         if (tyreDiameter !== null){
-        	sql+="AND MOTORAMA_CATALOG_TYRE.MOTORAMA_CATALOG_TYRE_DIAMETER_ID = MOTORAMA_CATALOG_TYRE_DIAMETER.MOTORAMA_CATALOG_TYRE_DIAMETER_ID";
+        	sql+=" inner join motorama_catalog_tyre_diameter on motorama_catalog_tyre.motorama_catalog_tyre_diameter_id = motorama_catalog_tyre_diameter.motorama_catalog_tyre_diameter_id";
+        	flagDiameter = 1;
         }
         if (tyreBrand !== null){
-        	sql+="AND WHERE MOTORAMA_CATALOG_TYRE.MOTORAMA_CATALOG_TYRE_BRAND_ID = MOTORAMA_CATALOG_TYRE_BRAND.MOTORAMA_CATALOG_TYRE_BRAND_ID";
+        	sql+=" inner join motorama_catalog_tyre_brand on motorama_catalog_tyre.motorama_catalog_tyre_brand_id = motorama_catalog_tyre_brand.motorama_catalog_tyre_brand_id";
+        	flagBrand = 1;
         }
-        if (tyreBrand !== null){
-        	sql+="WHERE MOTORAMA_CATALOG_TYRE.MOTORAMA_CATALOG_TYRE_RATIO_ID = MOTORAMA_CATALOG_TYRE_RATIO.MOTORAMA_CATALOG_TYRE_RATIO_ID";
+        if (tyreRatio !== null){
+        	sql+=" inner join motorama_catalog_tyre_ratio on motorama_catalog_tyre.motorama_catalog_tyre_ratio_id = motorama_catalog_tyre_ratio.motorama_catalog_tyre_ratio_id";
+        	flagRatio = 1;
+        }
+        switch (flagWidth) {
+        	case flagWidth = 1:
+        		sql+=" where "+ tyreWidth + "= motorama_catalog_tyre_width.motorama_catalog_tyre_width_id";
+        		break;
+			case flagDiameter = 1:
+        		sql+=" where "+ tyreDiameter + "= motorama_catalog_tyre_diameter.motorama_catalog_tyre_diameter_id";
+        		break; 
+			case flagBrand = 1:
+        		sql+=" where "+ tyreWidth + "= motorama_catalog_tyre_brand.motorama_catalog_tyre_brand_id";
+        		break;
+			case flagRatio = 1:
+        		sql+=" where "+ tyreRatio + "= motorama_catalog_tyre_ratio.motorama_catalog_tyre_ratio_id";
+        		break;           		
+        	default:
         }
         if (sort !== null) {
             sql += " ORDER BY " + sort;

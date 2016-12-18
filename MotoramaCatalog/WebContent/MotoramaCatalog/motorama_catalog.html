@@ -95,6 +95,26 @@
                </form>
             </div>
          </div>
+         <div class="row"> 
+         	<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Tyre Brand</th>
+						<th>Tyre Diameter</th>
+						<th>Tyre Width</th>
+						<th>Tyre Ratio</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="entry in finalData">
+						<td>{{entry.motorama_catalog_tyre_brand_id}}</td>
+						<td>{{entry.motorama_catalog_tyre_diameter_id}}</td>
+						<td>{{entry.motorama_catalog_tyre_width_id}}</td>
+						<td>{{entry.motorama_catalog_tyre_ratio_id}}</td>
+					</tr>
+				</tbody>
+			</table>
+         </div>
       </div>
       <!-- /.container -->
       <div class="container">
@@ -131,9 +151,8 @@
       	var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
       	var urlRatio = '../../js/MotoramaCatalog/motorama_catalog_tyre_ratio.js';
       	var urlWidth = '../../js/MotoramaCatalog/motorama_catalog_tyre_width.js';
-      	var absUrl = $location.absUrl();
+      	var finalUrl = " ";
       	
-      	console.log(absUrl);
       	$http.get(urlWidth)
       		.success(function(dataWidth) {
       			$scope.dataWidth = dataWidth;
@@ -154,16 +173,17 @@
 
         $(document).ready(function(){	
       	function listTyres(){
-      	var finalUrl = urlTyre + '?tyreWidth=' + $scope.selectedWidth + '&tyreDiameter=' + $scope.selectedDiameter + '&tyreBrand=' + $scope.selectedBrand + '&tyreRatio=' + $scope.selectedRatio;	
+      	finalUrl = urlTyre + '?tyreWidth=' + $scope.selectedWidth + '&tyreDiameter=' + $scope.selectedDiameter + '&tyreBrand=' + $scope.selectedBrand + '&tyreRatio=' + $scope.selectedRatio;	
         console.log(finalUrl);
       	$http.get(finalUrl)    
-      		.success(function(data) {
-      			$scope.data = data;
-      			console.log(data);
+      		.success(function(finalData) {
+      			$scope.finalData = finalData;
+      			console.log(finalData);
       		}); 
       	}
       	      		$("#search-button").click(listTyres);
 		});
+		console.log(finalUrl);
       });
    </script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
