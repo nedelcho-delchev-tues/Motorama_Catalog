@@ -51,36 +51,36 @@
                      <legend>Search for tyres</legend>
                      <!-- Select Basic -->
                      <div class="form-group">
-                        <label class="col-md-2 control-label" for="tyre_width">Width</label>
+                        <label class="col-md-2 control-label" for="tyre_brand">Brand</label>
                         <div class="col-md-2">
-                           <select id="tyre_width" name="tyre_width" class="form-control" ng-model="selectedWidth"
-                              ng-options="width.motorama_catalog_tyre_width_id as width.motorama_catalog_tyre_width_value for width in dataWidth">
-                              <option value="">Width</option>
+                           <select id="tyre_brand" name="tyre_brand" class="form-control" ng-model="selectedBrand" 
+                              ng-options="brand.brand_id as brand.brand_name for brand in dataBrand">
+                              <option value="">Brand</option>
                            </select>
                         </div>
                         <label class="col-md-2 control-label" for="tyre_diameter">Diameter</label>
                         <div class="col-md-2">
                            <select id="tyre_diameter" name="tyre_diameter" class="form-control" ng-model="selectedDiameter"
-                           	  ng-options="diameter.motorama_catalog_tyre_diameter_id as diameter.motorama_catalog_tyre_diameter_value for diameter in dataDiameter">>
+                           	  ng-options="diameter.diameter_id as diameter.diameter_value for diameter in dataDiameter">>
                               <option value="">Diameter</option>
                            </select>
                         </div>
                      </div>
                      <div class="form-group">
-                        <label class="col-md-2 control-label" for="tyre_brand">Brand</label>
-                        <div class="col-md-2">
-                           <select id="tyre_brand" name="tyre_brand" class="form-control" ng-model="selectedBrand" 
-                              ng-options="brand.motorama_catalog_tyre_brand_id as brand.motorama_catalog_tyre_brand_name for brand in dataBrand">
-                              <option value="">Brand</option>
-                           </select>
-                        </div>
                         <label class="col-md-2 control-label" for="tyre_brand">Ratio</label>
                         <div class="col-md-2">
                            <select id="tyre_ratio" name="tyre_ratio" class="form-control", ng-model="selectedRatio"
-                              ng-options="ratio.motorama_catalog_tyre_ratio_id as ratio.motorama_catalog_tyre_ratio_value for ratio in dataRatio">
+                              ng-options="ratio.ratio_id as ratio.ratio_value for ratio in dataRatio">
                               <option value="">Ratio</option>
                            </select>
                         </div>
+                        <label class="col-md-2 control-label" for="tyre_width">Width</label>
+                        <div class="col-md-2">
+                           <select id="tyre_width" name="tyre_width" class="form-control" ng-model="selectedWidth"
+                              ng-options="width.width_id as width.width_value for width in dataWidth">
+                              <option value="">Width</option>
+                           </select>
+                        </div>                        
                      </div>
                      <div class="col-md-4 offset-md-4"></div>
                      <div class="col-md-2"></div>
@@ -99,6 +99,8 @@
          	<table class="table table-condensed">
 				<thead>
 					<tr>
+						<th>Tyre Image</th>
+						<th>Tyre Model</th>
 						<th>Tyre Brand</th>
 						<th>Tyre Diameter</th>
 						<th>Tyre Width</th>
@@ -107,10 +109,12 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="entry in finalData">
-						<td>{{entry.motorama_catalog_tyre_brand_id}}</td>
-						<td>{{entry.motorama_catalog_tyre_diameter_id}}</td>
-						<td>{{entry.motorama_catalog_tyre_width_id}}</td>
-						<td>{{entry.motorama_catalog_tyre_ratio_id}}</td>
+						<td><img src="{{entry.tyre_image_url}}" height="150" width="100"></td>
+						<td>{{entry.tyre_model}}</td>
+						<td>{{entry.brand_name}}</td>
+						<td>{{entry.diameter_value}}</td>
+						<td>{{entry.width_value}}</td>
+						<td>{{entry.ratio_value}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -153,9 +157,17 @@
       	var urlWidth = '../../js/MotoramaCatalog/motorama_catalog_tyre_width.js';
       	var finalUrl = " ";
       	
+      	var urlTyreView = '../../js/MotoramaCatalog/motorama_catalog_tyre_view.js';
+      	
+      	$scope.selectedBrand = null;
+      	$scope.selectedDiameter = null;
+      	$scope.selectedRatio = null;
+      	$scope.selectedWidth = null;
+      	
       	$http.get(urlWidth)
       		.success(function(dataWidth) {
       			$scope.dataWidth = dataWidth;
+      			console.log(dataWidth);
       		});
       	$http.get(urlDiameter)
       		.success(function(dataDiameter) {
@@ -164,7 +176,6 @@
       	$http.get(urlBrand)
       		.success(function(dataBrand) {
       			$scope.dataBrand = dataBrand;
-      			console.log(dataBrand);
       		});
       	$http.get(urlRatio)
       		.success(function(dataRatio) {
@@ -173,7 +184,7 @@
 
         $(document).ready(function(){	
       	function listTyres(){
-      	finalUrl = urlTyre + '?tyreWidth=' + $scope.selectedWidth + '&tyreDiameter=' + $scope.selectedDiameter + '&tyreBrand=' + $scope.selectedBrand + '&tyreRatio=' + $scope.selectedRatio;	
+      	finalUrl = urlTyreView + '?tyreBrand=' + $scope.selectedWidth + '&tyreDiameter=' + $scope.selectedDiameter + '&tyreRatio=' + $scope.selectedBrand + '&tyreWidth=' + $scope.selectedRatio;	
         console.log(finalUrl);
       	$http.get(finalUrl)    
       		.success(function(finalData) {
@@ -188,25 +199,4 @@
    </script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-   <script>
-      $( document ).ready(function() {
-        $.getJSON("main.menu", function(data) {
-      $.each(data, function(i, item) {
-      	var itemContent = "";
-      	if (item.subMenu.length > 0) {
-      		itemContent += "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">" + item.name + " <b class=\"caret\"></b></a>";
-      		itemContent += "<ul class=\"dropdown-menu\">";
-      		$.each(item.subMenu, function(j, subitem) {
-      			itemContent += "<li><a href=\"" + subitem.link + "\" >" + subitem.name + "</a></li>";
-      		});
-      		itemContent += "</ul>";
-      	} else {
-      		itemContent += "<li><a href=\"" + item.link + "\" >" + item.name + "</a>";
-      	}
-      	itemContent += "</li>";
-      	$("#main-menu").append(itemContent);
-      });
-      });
-      });
-   </script>
 </html>

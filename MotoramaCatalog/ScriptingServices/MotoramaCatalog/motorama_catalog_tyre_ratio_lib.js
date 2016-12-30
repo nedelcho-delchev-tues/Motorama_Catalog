@@ -15,9 +15,9 @@ exports.createMotorama_catalog_tyre_ratio = function() {
     var connection = datasource.getConnection();
     try {
         var sql = "INSERT INTO MOTORAMA_CATALOG_TYRE_RATIO (";
-        sql += "MOTORAMA_CATALOG_TYRE_RATIO_ID";
+        sql += "RATIO_ID";
         sql += ",";
-        sql += "MOTORAMA_CATALOG_TYRE_RATIO_VALUE";
+        sql += "RATIO_VALUE";
         sql += ") VALUES ("; 
         sql += "?";
         sql += ",";
@@ -26,9 +26,9 @@ exports.createMotorama_catalog_tyre_ratio = function() {
 
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        var id = datasource.getSequence('MOTORAMA_CATALOG_TYRE_RATIO_MOTORAMA_CATALOG_TYRE_RATIO_ID').next();
+        var id = datasource.getSequence('MOTORAMA_CATALOG_TYRE_RATIO_RATIO_ID').next();
         statement.setInt(++i, id);
-        statement.setInt(++i, requestBody.motorama_catalog_tyre_ratio_value);
+        statement.setInt(++i, requestBody.ratio_value);
         statement.executeUpdate();
 		response.println(id);
         return id;
@@ -103,8 +103,8 @@ exports.readMotorama_catalog_tyre_ratioList = function(limit, offset, sort, desc
 //create entity as JSON object from ResultSet current Row
 function createEntity(resultSet) {
     var result = {};
-	result.motorama_catalog_tyre_ratio_id = resultSet.getInt("MOTORAMA_CATALOG_TYRE_RATIO_ID");
-	result.motorama_catalog_tyre_ratio_value = resultSet.getInt("MOTORAMA_CATALOG_TYRE_RATIO_VALUE");
+	result.ratio_id = resultSet.getInt("RATIO_ID");
+	result.ratio_value = resultSet.getInt("RATIO_VALUE");
     return result;
 }
 
@@ -122,12 +122,12 @@ exports.updateMotorama_catalog_tyre_ratio = function() {
     var connection = datasource.getConnection();
     try {
         var sql = "UPDATE MOTORAMA_CATALOG_TYRE_RATIO SET ";
-        sql += "MOTORAMA_CATALOG_TYRE_RATIO_VALUE = ?";
-        sql += " WHERE MOTORAMA_CATALOG_TYRE_RATIO_ID = ?";
+        sql += "RATIO_VALUE = ?";
+        sql += " WHERE RATIO_ID = ?";
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        statement.setInt(++i, responseBody.motorama_catalog_tyre_ratio_value);
-        var id = responseBody.motorama_catalog_tyre_ratio_id;
+        statement.setInt(++i, responseBody.ratio_value);
+        var id = responseBody.ratio_id;
         statement.setInt(++i, id);
         statement.executeUpdate();
 		response.println(id);
@@ -182,19 +182,19 @@ exports.metadataMotorama_catalog_tyre_ratio = function() {
 		properties: []
 	};
 	
-	var propertymotorama_catalog_tyre_ratio_id = {
-		name: 'motorama_catalog_tyre_ratio_id',
+	var propertyratio_id = {
+		name: 'ratio_id',
 		type: 'integer',
 	key: 'true',
 	required: 'true'
 	};
-    entityMetadata.properties.push(propertymotorama_catalog_tyre_ratio_id);
+    entityMetadata.properties.push(propertyratio_id);
 
-	var propertymotorama_catalog_tyre_ratio_value = {
-		name: 'motorama_catalog_tyre_ratio_value',
+	var propertyratio_value = {
+		name: 'ratio_value',
 		type: 'integer'
 	};
-    entityMetadata.properties.push(propertymotorama_catalog_tyre_ratio_value);
+    entityMetadata.properties.push(propertyratio_value);
 
 
 	response.println(JSON.stringify(entityMetadata));
@@ -203,7 +203,7 @@ exports.metadataMotorama_catalog_tyre_ratio = function() {
 exports.getPrimaryKeys = function() {
     var result = [];
     var i = 0;
-    result[i++] = 'MOTORAMA_CATALOG_TYRE_RATIO_ID';
+    result[i++] = 'RATIO_ID';
     if (result === 0) {
         throw new Error("There is no primary key");
     } else if(result.length > 1) {

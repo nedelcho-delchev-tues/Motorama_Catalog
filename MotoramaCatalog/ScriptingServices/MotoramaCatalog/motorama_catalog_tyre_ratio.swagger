@@ -28,7 +28,7 @@
                         "type": "boolean"
                     },
                     {
-                        "name": "motorama_catalog_tyre_ratio_id",
+                        "name": "ratio_id",
                         "in": "query",
                         "description": "Identifier of the 'Motorama_catalog_tyre_ratio' object",
                         "required": false,
@@ -151,7 +151,7 @@
                 "description": "Deletes 'Motorama_catalog_tyre_ratio' objects.\n",
                 "parameters": [
                     {
-                        "name": "motorama_catalog_tyre_ratio_id",
+                        "name": "ratio_id",
                         "in": "query",
                         "description": "Identifier of the 'Motorama_catalog_tyre_ratio' object",
                         "required": true,
@@ -174,12 +174,12 @@
         "Motorama_catalog_tyre_ratio": {
 	        "type":"object",
 	        "properties": {
-        		"motorama_catalog_tyre_ratio_id": {
+        		"ratio_id": {
 	            	"type": 
         "integer"
 	    		}
 				,
-        		"motorama_catalog_tyre_ratio_value": {
+        		"ratio_value": {
 	            	"type": 
         "integer"
 	    		}

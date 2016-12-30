@@ -28,7 +28,7 @@
                         "type": "boolean"
                     },
                     {
-                        "name": "motorama_catalog_tyre_diameter_id",
+                        "name": "diameter_id",
                         "in": "query",
                         "description": "Identifier of the 'Motorama_catalog_tyre_diameter' object",
                         "required": false,
@@ -151,7 +151,7 @@
                 "description": "Deletes 'Motorama_catalog_tyre_diameter' objects.\n",
                 "parameters": [
                     {
-                        "name": "motorama_catalog_tyre_diameter_id",
+                        "name": "diameter_id",
                         "in": "query",
                         "description": "Identifier of the 'Motorama_catalog_tyre_diameter' object",
                         "required": true,
@@ -174,12 +174,12 @@
         "Motorama_catalog_tyre_diameter": {
 	        "type":"object",
 	        "properties": {
-        		"motorama_catalog_tyre_diameter_id": {
+        		"diameter_id": {
 	            	"type": 
         "integer"
 	    		}
 				,
-        		"motorama_catalog_tyre_diameter_value": {
+        		"diameter_value": {
 	            	"type": 
         "integer"
 	    		}

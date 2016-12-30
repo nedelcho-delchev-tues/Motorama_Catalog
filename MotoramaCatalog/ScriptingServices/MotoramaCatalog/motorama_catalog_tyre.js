@@ -31,10 +31,6 @@ function handleRequest() {
 	var limit = xss.escapeSql(request.getParameter('limit'));
 	var offset = xss.escapeSql(request.getParameter('offset'));
 	var desc = xss.escapeSql(request.getParameter('desc'));
-	var tyreBrand = xss.escapeSql(request.getParameter('tyreBrand'));
-	var tyreDiameter = xss.escapeSql(request.getParameter('tyreDiameter'));
-	var tyreRatio = xss.escapeSql(request.getParameter('tyreRatio'));
-	var tyreWidth = xss.escapeSql(request.getParameter('tyreWidth'));
 	
 	if (limit === null) {
 		limit = 100;
@@ -57,7 +53,7 @@ function handleRequest() {
 			} else if (metadata !== null) {
 				entityMotorama_catalog_tyre.metadataMotorama_catalog_tyre();
 			} else {
-				entityMotorama_catalog_tyre.readMotorama_catalog_tyreList(limit, offset, sort, desc, tyreBrand, tyreDiameter, tyreRatio, tyreWidth);
+				entityMotorama_catalog_tyre.readMotorama_catalog_tyreList(limit, offset, sort, desc);
 			}
 		} else if ((method === 'PUT')) {
 			// update

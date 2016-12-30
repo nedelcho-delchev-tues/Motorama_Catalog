@@ -3,7 +3,7 @@
   "columns":
     [
       {
-        "name":"MOTORAMA_CATALOG_TYRE_RATIO_ID",
+        "name":"RATIO_ID",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",
@@ -12,7 +12,7 @@
       }
       ,
       {
-        "name":"MOTORAMA_CATALOG_TYRE_RATIO_VALUE",
+        "name":"RATIO_VALUE",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",

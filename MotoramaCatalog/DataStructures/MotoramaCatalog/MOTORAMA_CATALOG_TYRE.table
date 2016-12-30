@@ -3,7 +3,7 @@
   "columns":
     [
       {
-        "name":"MOTORAMA_CATALOG_TYRE_ID",
+        "name":"TYRE_ID",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",
@@ -12,7 +12,7 @@
       }
       ,
       {
-        "name":"MOTORAMA_CATALOG_TYRE_BRAND_ID",
+        "name":"TYRE_BRAND_ID",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",
@@ -21,7 +21,7 @@
       }
       ,
       {
-        "name":"MOTORAMA_CATALOG_TYRE_DIAMETER_ID",
+        "name":"TYRE_DIAMETER_ID",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",
@@ -30,7 +30,7 @@
       }
       ,
       {
-        "name":"MOTORAMA_CATALOG_TYRE_WIDTH_ID",
+        "name":"TYRE_RATIO_ID",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",
@@ -39,9 +39,27 @@
       }
       ,
       {
-        "name":"MOTORAMA_CATALOG_TYRE_RATIO_ID",
+        "name":"TYRE_WIDTH_ID",
         "type":"INTEGER",
         "length":"0",
+        "notNull":"false",
+        "primaryKey":"false",
+        "defaultValue":""
+      }
+      ,
+      {
+        "name":"TYRE_IMAGE_URL",
+        "type":"VARCHAR",
+        "length":"256",
+        "notNull":"true",
+        "primaryKey":"false",
+        "defaultValue":""
+      }
+      ,
+      {
+        "name":"TYRE_MODEL",
+        "type":"VARCHAR",
+        "length":"256",
         "notNull":"true",
         "primaryKey":"false",
         "defaultValue":""

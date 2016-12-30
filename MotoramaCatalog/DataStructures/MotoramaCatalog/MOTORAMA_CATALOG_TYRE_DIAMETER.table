@@ -3,7 +3,7 @@
   "columns":
     [
       {
-        "name":"MOTORAMA_CATALOG_TYRE_DIAMETER_ID",
+        "name":"DIAMETER_ID",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",
@@ -12,7 +12,7 @@
       }
       ,
       {
-        "name":"MOTORAMA_CATALOG_TYRE_DIAMETER_VALUE",
+        "name":"DIAMETER_VALUE",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",

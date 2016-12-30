@@ -28,7 +28,7 @@
                         "type": "boolean"
                     },
                     {
-                        "name": "motorama_catalog_tyre_brand_id",
+                        "name": "brand_id",
                         "in": "query",
                         "description": "Identifier of the 'Motorama_catalog_tyre_brand' object",
                         "required": false,
@@ -151,7 +151,7 @@
                 "description": "Deletes 'Motorama_catalog_tyre_brand' objects.\n",
                 "parameters": [
                     {
-                        "name": "motorama_catalog_tyre_brand_id",
+                        "name": "brand_id",
                         "in": "query",
                         "description": "Identifier of the 'Motorama_catalog_tyre_brand' object",
                         "required": true,
@@ -174,12 +174,12 @@
         "Motorama_catalog_tyre_brand": {
 	        "type":"object",
 	        "properties": {
-        		"motorama_catalog_tyre_brand_id": {
+        		"brand_id": {
 	            	"type": 
         "integer"
 	    		}
 				,
-        		"motorama_catalog_tyre_brand_name": {
+        		"brand_name": {
 	            	"type": 
         "string"
 	    		}

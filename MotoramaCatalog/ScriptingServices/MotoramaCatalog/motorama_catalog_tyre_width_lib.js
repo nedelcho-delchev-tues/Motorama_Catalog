@@ -15,9 +15,9 @@ exports.createMotorama_catalog_tyre_width = function() {
     var connection = datasource.getConnection();
     try {
         var sql = "INSERT INTO MOTORAMA_CATALOG_TYRE_WIDTH (";
-        sql += "MOTORAMA_CATALOG_TYRE_WIDTH_ID";
+        sql += "WIDTH_ID";
         sql += ",";
-        sql += "MOTORAMA_CATALOG_TYRE_WIDTH_VALUE";
+        sql += "WIDTH_VALUE";
         sql += ") VALUES ("; 
         sql += "?";
         sql += ",";
@@ -26,9 +26,9 @@ exports.createMotorama_catalog_tyre_width = function() {
 
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        var id = datasource.getSequence('MOTORAMA_CATALOG_TYRE_WIDTH_MOTORAMA_CATALOG_TYRE_WIDTH_ID').next();
+        var id = datasource.getSequence('MOTORAMA_CATALOG_TYRE_WIDTH_WIDTH_ID').next();
         statement.setInt(++i, id);
-        statement.setInt(++i, requestBody.motorama_catalog_tyre_width_value);
+        statement.setInt(++i, requestBody.width_value);
         statement.executeUpdate();
 		response.println(id);
         return id;
@@ -103,8 +103,8 @@ exports.readMotorama_catalog_tyre_widthList = function(limit, offset, sort, desc
 //create entity as JSON object from ResultSet current Row
 function createEntity(resultSet) {
     var result = {};
-	result.motorama_catalog_tyre_width_id = resultSet.getInt("MOTORAMA_CATALOG_TYRE_WIDTH_ID");
-	result.motorama_catalog_tyre_width_value = resultSet.getInt("MOTORAMA_CATALOG_TYRE_WIDTH_VALUE");
+	result.width_id = resultSet.getInt("WIDTH_ID");
+	result.width_value = resultSet.getInt("WIDTH_VALUE");
     return result;
 }
 
@@ -122,12 +122,12 @@ exports.updateMotorama_catalog_tyre_width = function() {
     var connection = datasource.getConnection();
     try {
         var sql = "UPDATE MOTORAMA_CATALOG_TYRE_WIDTH SET ";
-        sql += "MOTORAMA_CATALOG_TYRE_WIDTH_VALUE = ?";
-        sql += " WHERE MOTORAMA_CATALOG_TYRE_WIDTH_ID = ?";
+        sql += "WIDTH_VALUE = ?";
+        sql += " WHERE WIDTH_ID = ?";
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        statement.setInt(++i, responseBody.motorama_catalog_tyre_width_value);
-        var id = responseBody.motorama_catalog_tyre_width_id;
+        statement.setInt(++i, responseBody.width_value);
+        var id = responseBody.width_id;
         statement.setInt(++i, id);
         statement.executeUpdate();
 		response.println(id);
@@ -182,19 +182,19 @@ exports.metadataMotorama_catalog_tyre_width = function() {
 		properties: []
 	};
 	
-	var propertymotorama_catalog_tyre_width_id = {
-		name: 'motorama_catalog_tyre_width_id',
+	var propertywidth_id = {
+		name: 'width_id',
 		type: 'integer',
 	key: 'true',
 	required: 'true'
 	};
-    entityMetadata.properties.push(propertymotorama_catalog_tyre_width_id);
+    entityMetadata.properties.push(propertywidth_id);
 
-	var propertymotorama_catalog_tyre_width_value = {
-		name: 'motorama_catalog_tyre_width_value',
+	var propertywidth_value = {
+		name: 'width_value',
 		type: 'integer'
 	};
-    entityMetadata.properties.push(propertymotorama_catalog_tyre_width_value);
+    entityMetadata.properties.push(propertywidth_value);
 
 
 	response.println(JSON.stringify(entityMetadata));
@@ -203,7 +203,7 @@ exports.metadataMotorama_catalog_tyre_width = function() {
 exports.getPrimaryKeys = function() {
     var result = [];
     var i = 0;
-    result[i++] = 'MOTORAMA_CATALOG_TYRE_WIDTH_ID';
+    result[i++] = 'WIDTH_ID';
     if (result === 0) {
         throw new Error("There is no primary key");
     } else if(result.length > 1) {

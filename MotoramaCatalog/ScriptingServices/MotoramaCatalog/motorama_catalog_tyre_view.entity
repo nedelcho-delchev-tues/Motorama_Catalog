@@ -1,0 +1,14 @@
+{
+  "tableName":"MOTORAMA_CATALOG_TYRE_VIEW",
+  "tableType":"VIEW",
+  "serviceName":"motorama_catalog_tyre_view.js",
+  "libraryName":"motorama_catalog_tyre_view_lib.js",
+  "specification":"motorama_catalog_tyre_view.swagger",
+  "getEnabled":"true",
+  "postEnabled":"false",
+  "putEnabled":"false",
+  "deleteEnabled":"false",
+  "countEnabled":"true",
+  "offsetAndLimitEnabled":"true",
+  "metadataEnabled":"true"
+}

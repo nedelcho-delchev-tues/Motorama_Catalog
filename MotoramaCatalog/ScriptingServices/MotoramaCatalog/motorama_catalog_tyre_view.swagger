@@ -1,0 +1,148 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.0",
+        "title": "Motorama_catalog_tyre_view Entity Service",
+        "description":"This is a RESTful web service for listing, viewing and managing entities of the type 'Motorama_catalog_tyre_view'"
+    },
+    "basePath":"/services",
+    "tags":[
+      {
+         "name":"Motorama_catalog_tyre_view",
+         "description":"View and manage Motorama_catalog_tyre_view objects"
+      }
+    ],
+    "paths": {
+        "/js/MotoramaCatalog/motorama_catalog_tyre_view.js": {
+            "get": {
+            	"tags":[
+               		"Motorama_catalog_tyre_view"
+            	],
+                "description": "Gets 'Motorama_catalog_tyre_view' objects.\n",
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Count of all the records",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "${primaryKey.getName().toLowerCase()}",
+                        "in": "query",
+                        "description": "Identifier of the 'Motorama_catalog_tyre_view' object",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "metadata",
+                        "in": "query",
+                        "description": "Metadata of the 'Motorama_catalog_tyre_view' object",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit of the objects list",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset of the objects list",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sort parameter",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "description": "Descending order",
+                        "required": false,
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema":{
+		                     "$ref":"#/definitions/Motorama_catalog_tyre_view"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "Motorama_catalog_tyre_view": {
+	        "type":"object",
+	        "properties": {
+        		"tyre_id": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"tyre_image_url": {
+	            	"type": 
+        "string"
+	    		}
+				,
+        		"tyre_model": {
+	            	"type": 
+        "string"
+	    		}
+				,
+        		"tyre_brand_id": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"brand_name": {
+	            	"type": 
+        "string"
+	    		}
+				,
+        		"tyre_diameter_id": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"diameter_value": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"tyre_width_id": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"width_value": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"tyre_ratio_id": {
+	            	"type": 
+        "integer"
+	    		}
+				,
+        		"ratio_value": {
+	            	"type": 
+        "integer"
+	    		}
+	        }
+        }
+	}
+}

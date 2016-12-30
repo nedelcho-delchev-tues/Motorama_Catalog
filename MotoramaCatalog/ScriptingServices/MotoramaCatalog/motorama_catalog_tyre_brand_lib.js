@@ -15,9 +15,9 @@ exports.createMotorama_catalog_tyre_brand = function() {
     var connection = datasource.getConnection();
     try {
         var sql = "INSERT INTO MOTORAMA_CATALOG_TYRE_BRAND (";
-        sql += "MOTORAMA_CATALOG_TYRE_BRAND_ID";
+        sql += "BRAND_ID";
         sql += ",";
-        sql += "MOTORAMA_CATALOG_TYRE_BRAND_NAME";
+        sql += "BRAND_NAME";
         sql += ") VALUES ("; 
         sql += "?";
         sql += ",";
@@ -26,9 +26,9 @@ exports.createMotorama_catalog_tyre_brand = function() {
 
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        var id = datasource.getSequence('MOTORAMA_CATALOG_TYRE_BRAND_MOTORAMA_CATALOG_TYRE_BRAND_ID').next();
+        var id = datasource.getSequence('MOTORAMA_CATALOG_TYRE_BRAND_BRAND_ID').next();
         statement.setInt(++i, id);
-        statement.setString(++i, requestBody.motorama_catalog_tyre_brand_name);
+        statement.setString(++i, requestBody.brand_name);
         statement.executeUpdate();
 		response.println(id);
         return id;
@@ -103,8 +103,8 @@ exports.readMotorama_catalog_tyre_brandList = function(limit, offset, sort, desc
 //create entity as JSON object from ResultSet current Row
 function createEntity(resultSet) {
     var result = {};
-	result.motorama_catalog_tyre_brand_id = resultSet.getInt("MOTORAMA_CATALOG_TYRE_BRAND_ID");
-    result.motorama_catalog_tyre_brand_name = resultSet.getString("MOTORAMA_CATALOG_TYRE_BRAND_NAME");
+	result.brand_id = resultSet.getInt("BRAND_ID");
+    result.brand_name = resultSet.getString("BRAND_NAME");
     return result;
 }
 
@@ -122,12 +122,12 @@ exports.updateMotorama_catalog_tyre_brand = function() {
     var connection = datasource.getConnection();
     try {
         var sql = "UPDATE MOTORAMA_CATALOG_TYRE_BRAND SET ";
-        sql += "MOTORAMA_CATALOG_TYRE_BRAND_NAME = ?";
-        sql += " WHERE MOTORAMA_CATALOG_TYRE_BRAND_ID = ?";
+        sql += "BRAND_NAME = ?";
+        sql += " WHERE BRAND_ID = ?";
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        statement.setString(++i, responseBody.motorama_catalog_tyre_brand_name);
-        var id = responseBody.motorama_catalog_tyre_brand_id;
+        statement.setString(++i, responseBody.brand_name);
+        var id = responseBody.brand_id;
         statement.setInt(++i, id);
         statement.executeUpdate();
 		response.println(id);
@@ -182,19 +182,19 @@ exports.metadataMotorama_catalog_tyre_brand = function() {
 		properties: []
 	};
 	
-	var propertymotorama_catalog_tyre_brand_id = {
-		name: 'motorama_catalog_tyre_brand_id',
+	var propertybrand_id = {
+		name: 'brand_id',
 		type: 'integer',
 	key: 'true',
 	required: 'true'
 	};
-    entityMetadata.properties.push(propertymotorama_catalog_tyre_brand_id);
+    entityMetadata.properties.push(propertybrand_id);
 
-	var propertymotorama_catalog_tyre_brand_name = {
-		name: 'motorama_catalog_tyre_brand_name',
+	var propertybrand_name = {
+		name: 'brand_name',
 		type: 'string'
 	};
-    entityMetadata.properties.push(propertymotorama_catalog_tyre_brand_name);
+    entityMetadata.properties.push(propertybrand_name);
 
 
 	response.println(JSON.stringify(entityMetadata));
@@ -203,7 +203,7 @@ exports.metadataMotorama_catalog_tyre_brand = function() {
 exports.getPrimaryKeys = function() {
     var result = [];
     var i = 0;
-    result[i++] = 'MOTORAMA_CATALOG_TYRE_BRAND_ID';
+    result[i++] = 'BRAND_ID';
     if (result === 0) {
         throw new Error("There is no primary key");
     } else if(result.length > 1) {

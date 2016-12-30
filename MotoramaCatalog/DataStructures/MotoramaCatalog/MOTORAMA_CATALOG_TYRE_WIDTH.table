@@ -3,7 +3,7 @@
   "columns":
     [
       {
-        "name":"MOTORAMA_CATALOG_TYRE_WIDTH_ID",
+        "name":"WIDTH_ID",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",
@@ -12,7 +12,7 @@
       }
       ,
       {
-        "name":"MOTORAMA_CATALOG_TYRE_WIDTH_VALUE",
+        "name":"WIDTH_VALUE",
         "type":"INTEGER",
         "length":"0",
         "notNull":"true",

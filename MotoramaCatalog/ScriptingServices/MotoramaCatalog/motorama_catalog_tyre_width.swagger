@@ -28,7 +28,7 @@
                         "type": "boolean"
                     },
                     {
-                        "name": "motorama_catalog_tyre_width_id",
+                        "name": "width_id",
                         "in": "query",
                         "description": "Identifier of the 'Motorama_catalog_tyre_width' object",
                         "required": false,
@@ -151,7 +151,7 @@
                 "description": "Deletes 'Motorama_catalog_tyre_width' objects.\n",
                 "parameters": [
                     {
-                        "name": "motorama_catalog_tyre_width_id",
+                        "name": "width_id",
                         "in": "query",
                         "description": "Identifier of the 'Motorama_catalog_tyre_width' object",
                         "required": true,
@@ -174,12 +174,12 @@
         "Motorama_catalog_tyre_width": {
 	        "type":"object",
 	        "properties": {
-        		"motorama_catalog_tyre_width_id": {
+        		"width_id": {
 	            	"type": 
         "integer"
 	    		}
 				,
-        		"motorama_catalog_tyre_width_value": {
+        		"width_value": {
 	            	"type": 
         "integer"
 	    		}

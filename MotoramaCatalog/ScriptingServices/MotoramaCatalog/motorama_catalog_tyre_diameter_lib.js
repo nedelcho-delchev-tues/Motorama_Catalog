@@ -15,9 +15,9 @@ exports.createMotorama_catalog_tyre_diameter = function() {
     var connection = datasource.getConnection();
     try {
         var sql = "INSERT INTO MOTORAMA_CATALOG_TYRE_DIAMETER (";
-        sql += "MOTORAMA_CATALOG_TYRE_DIAMETER_ID";
+        sql += "DIAMETER_ID";
         sql += ",";
-        sql += "MOTORAMA_CATALOG_TYRE_DIAMETER_VALUE";
+        sql += "DIAMETER_VALUE";
         sql += ") VALUES ("; 
         sql += "?";
         sql += ",";
@@ -26,9 +26,9 @@ exports.createMotorama_catalog_tyre_diameter = function() {
 
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        var id = datasource.getSequence('MOTORAMA_CATALOG_TYRE_DIAMETER_MOTORAMA_CATALOG_TYRE_DIAMETER_ID').next();
+        var id = datasource.getSequence('MOTORAMA_CATALOG_TYRE_DIAMETER_DIAMETER_ID').next();
         statement.setInt(++i, id);
-        statement.setInt(++i, requestBody.motorama_catalog_tyre_diameter_value);
+        statement.setInt(++i, requestBody.diameter_value);
         statement.executeUpdate();
 		response.println(id);
         return id;
@@ -103,8 +103,8 @@ exports.readMotorama_catalog_tyre_diameterList = function(limit, offset, sort, d
 //create entity as JSON object from ResultSet current Row
 function createEntity(resultSet) {
     var result = {};
-	result.motorama_catalog_tyre_diameter_id = resultSet.getInt("MOTORAMA_CATALOG_TYRE_DIAMETER_ID");
-	result.motorama_catalog_tyre_diameter_value = resultSet.getInt("MOTORAMA_CATALOG_TYRE_DIAMETER_VALUE");
+	result.diameter_id = resultSet.getInt("DIAMETER_ID");
+	result.diameter_value = resultSet.getInt("DIAMETER_VALUE");
     return result;
 }
 
@@ -122,12 +122,12 @@ exports.updateMotorama_catalog_tyre_diameter = function() {
     var connection = datasource.getConnection();
     try {
         var sql = "UPDATE MOTORAMA_CATALOG_TYRE_DIAMETER SET ";
-        sql += "MOTORAMA_CATALOG_TYRE_DIAMETER_VALUE = ?";
-        sql += " WHERE MOTORAMA_CATALOG_TYRE_DIAMETER_ID = ?";
+        sql += "DIAMETER_VALUE = ?";
+        sql += " WHERE DIAMETER_ID = ?";
         var statement = connection.prepareStatement(sql);
         var i = 0;
-        statement.setInt(++i, responseBody.motorama_catalog_tyre_diameter_value);
-        var id = responseBody.motorama_catalog_tyre_diameter_id;
+        statement.setInt(++i, responseBody.diameter_value);
+        var id = responseBody.diameter_id;
         statement.setInt(++i, id);
         statement.executeUpdate();
 		response.println(id);
@@ -182,19 +182,19 @@ exports.metadataMotorama_catalog_tyre_diameter = function() {
 		properties: []
 	};
 	
-	var propertymotorama_catalog_tyre_diameter_id = {
-		name: 'motorama_catalog_tyre_diameter_id',
+	var propertydiameter_id = {
+		name: 'diameter_id',
 		type: 'integer',
 	key: 'true',
 	required: 'true'
 	};
-    entityMetadata.properties.push(propertymotorama_catalog_tyre_diameter_id);
+    entityMetadata.properties.push(propertydiameter_id);
 
-	var propertymotorama_catalog_tyre_diameter_value = {
-		name: 'motorama_catalog_tyre_diameter_value',
+	var propertydiameter_value = {
+		name: 'diameter_value',
 		type: 'integer'
 	};
-    entityMetadata.properties.push(propertymotorama_catalog_tyre_diameter_value);
+    entityMetadata.properties.push(propertydiameter_value);
 
 
 	response.println(JSON.stringify(entityMetadata));
@@ -203,7 +203,7 @@ exports.metadataMotorama_catalog_tyre_diameter = function() {
 exports.getPrimaryKeys = function() {
     var result = [];
     var i = 0;
-    result[i++] = 'MOTORAMA_CATALOG_TYRE_DIAMETER_ID';
+    result[i++] = 'DIAMETER_ID';
     if (result === 0) {
         throw new Error("There is no primary key");
     } else if(result.length > 1) {
