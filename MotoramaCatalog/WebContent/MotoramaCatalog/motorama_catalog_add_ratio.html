@@ -35,19 +35,50 @@
 <div ng-include="'header.html'"></div>
 
 	<div id="wrap" ng-controller="ManageController">
-		<div class="row">
-			<div class="col-lg-12">
-		    	<h1 class="page-header">Ratio</h1>
-			</div>
-		</div>
+      <div class="row">
+      <div class="col-lg-12">
+	      <div class="page-header">
+	         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	            <div class="container">
+	               <div class="navbar-header">
+	                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	                  <span class="sr-only">Toggle navigation</span>
+	                  <span class="icon-bar"></span>
+	                  <span class="icon-bar"></span>
+	                  <span class="icon-bar"></span>
+	                  </button>
+	                  <a class="navbar-brand" href="motorama_catalog.html">Motorama</a>
+	               </div>
+	               <!-- Collect the nav links, forms, and other content for toggling -->
+	               <div class="collapse navbar-collapse navbar-ex1-collapse">
+	                  <ul class="nav navbar-nav">
+	                     <li><a href="motorama_catalog_add_tyre.html">Add Tyre</a>
+	                     </li>
+	                     <li><a href="motorama_catalog_add_width.html">Add Width</a>                 
+	                     </li>
+	                     <li><a href="motorama_catalog_add_diameter.html">Add Diameter</a>
+	                     </li>
+	                     <li><a href="motorama_catalog_add_brand.html">Add Brand</a>
+	                     </li>
+	                     <li><a href="motorama_catalog_add_ratio.html">Add Ratio</a>
+	                     </li>
+	                  </ul>
+	               </div>
+	               <!-- /.navbar-collapse -->
+	            </div>
+	            <!-- /.container -->
+	         </nav>
+	         </div>
+         </div>
+      </div>
 		<div class="container">
 			<div class="alert alert-danger" ng-show="errorMessage">{{errorMessage}}</div>
 			<!-- entities table -->
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th>RATIO_ID</th>
-						<th>RATIO_VALUE</th>
+						<th>Ratio ID</th>
+						<th>Ratio Value</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -81,11 +112,11 @@
 			<div>
 				<!-- input form -->
 				<div>
-					<label>RATIO_ID</label>
+					<label>Ratio ID</label>
 					<input type="text" class="form-control" 
 						ng-model="selectedEntry.ratio_id" readonly> <br>
 					<br>
-					<label>RATIO_VALUE</label>
+					<label>Ratio Value</label>
 					<input type="text" class="form-control" 
 						ng-model="selectedEntry.ratio_value"
 						ng-readonly="operation == 'show'" required="required">
