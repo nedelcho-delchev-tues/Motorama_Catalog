@@ -32,9 +32,9 @@
                   </li>
                   <li><a href="motorama_catalog_add_diameter.html">Add Diameter</a>
                   </li>
-					<li><a href="motorama_catalog_add_brand.html">Add Brand</a>
+                  <li><a href="motorama_catalog_add_brand.html">Add Brand</a>
                   </li>
-                   <li><a href="motorama_catalog_add_ratio.html">Add Ratio</a>
+                  <li><a href="motorama_catalog_add_ratio.html">Add Ratio</a>
                   </li>
                </ul>
             </div>
@@ -44,7 +44,37 @@
       </nav>
       <div class="container" ng-controller="ListController">
          <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-3" ng-show="showSideMenu == 1">
+               <p class="lead">Dimensions</p>               
+                <div class="clear-space">
+					<select id="tyre_diameter" name="tyre_diameter" class="search-menu-dimensions" ng-model="selectedDiameter"
+                      	ng-options="diameter.diameter_id as diameter.diameter_value for diameter in dataDiameter">
+                      	<option value="">Diameter</option>
+                     	<option value="selectedDiameter">{{selectedDiameters}}</option>
+                     </select>
+				</div>
+				<div class="clear-space">
+                   <select id="tyre_ratio" name="tyre_ratio" class="search-menu-dimensions", ng-model="selectedRatio"
+                     ng-options="ratio.ratio_id as ratio.ratio_value for ratio in dataRatio">
+                      <option value="">Ratio</option>
+                      <option value="selectedRatio">{{selectedRatio}}</option>
+                   </select>					
+				</div>
+				<div class="clear-space">
+                    <select id="tyre_width" name="tyre_width" class="search-menu-dimensions" ng-model="selectedWidth"
+                       ng-options="width.width_id as width.width_value for width in dataWidth">
+                        <option value="">Width</option>
+                        <option value="selectedWidth">{{selectedWidth}}</option>
+                     </select>				
+				</div>
+				<p class="lead">Brands</p>
+				<div>
+					<label ng-repeat="brand in dataBrand">
+					  <input type="checkbox" checklist-model="selectedBrand" checklist-value="selectedBrand">{{brand.brand_name}}
+					</label>					
+				</div>
+            </div>
+            <div class="col-md-9" ng-show="showSearchForm == 0">
                <form class="form-horizontal" ng-submit="GetData">
                   <fieldset>
                      <!-- Form Name -->
@@ -53,71 +83,76 @@
                      <div class="form-group">
                         <label class="col-md-2 control-label" for="tyre_brand">Brand</label>
                         <div class="col-md-2">
-                           <select id="tyre_brand" name="tyre_brand" class="form-control" ng-model="selectedBrand" 
+                           <select id="tyre_brand" name="tyre_brand" class="search-form" ng-model="selectedBrand" 
                               ng-options="brand.brand_id as brand.brand_name for brand in dataBrand">
                               <option value="">Brand</option>
                            </select>
                         </div>
                         <label class="col-md-2 control-label" for="tyre_diameter">Diameter</label>
                         <div class="col-md-2">
-                           <select id="tyre_diameter" name="tyre_diameter" class="form-control" ng-model="selectedDiameter"
-                           	  ng-options="diameter.diameter_id as diameter.diameter_value for diameter in dataDiameter">>
+                           <select id="tyre_diameter" name="tyre_diameter" class="search-form" ng-model="selectedDiameter"
+                              ng-options="diameter.diameter_id as diameter.diameter_value for diameter in dataDiameter">                             
                               <option value="">Diameter</option>
                            </select>
                         </div>
                      </div>
                      <div class="form-group">
-                        <label class="col-md-2 control-label" for="tyre_brand">Ratio</label>
+                        <label class="col-md-2 control-label" for="tyre_ratio">Ratio</label>
                         <div class="col-md-2">
-                           <select id="tyre_ratio" name="tyre_ratio" class="form-control", ng-model="selectedRatio"
+                           <select id="tyre_ratio" name="tyre_ratio" class="search-form", ng-model="selectedRatio"
                               ng-options="ratio.ratio_id as ratio.ratio_value for ratio in dataRatio">
                               <option value="">Ratio</option>
                            </select>
                         </div>
                         <label class="col-md-2 control-label" for="tyre_width">Width</label>
                         <div class="col-md-2">
-                           <select id="tyre_width" name="tyre_width" class="form-control" ng-model="selectedWidth"
+                           <select id="tyre_width" name="tyre_width" class="search-form" ng-model="selectedWidth"
                               ng-options="width.width_id as width.width_value for width in dataWidth">
                               <option value="">Width</option>
                            </select>
-                        </div>                        
+                        </div>
                      </div>
-                     <div class="col-md-4 offset-md-4"></div>
-                     <div class="col-md-2"></div>
-                     <div class="col-md-2 offset-md-4">
-                        <button id="search-button" name="search-button" class="btn btn-danger">Search Tyres</button>   
-                        <tt>{{selectedWidth}}</tt>
-                        <tt>{{selectedDiameter}}</tt>
-                        <tt>{{selectedBrand}}</tt>                        
-                        <tt>{{selectedRatio}}</tt>                        
+                     <div class="row">
+                        <div class="col-md-6 pull-right">
+                           <button id="search-button" name="search-button" class="btn btn-danger" ng-click="itemConfig()">Search Tyres</button>
+                        </div>
                      </div>
+                     </br>                  
                   </fieldset>
                </form>
             </div>
-         </div>
-         <div class="row"> 
-         	<table class="table table-condensed">
-				<thead>
-					<tr>
-						<th>Tyre Image</th>
-						<th>Tyre Model</th>
-						<th>Tyre Brand</th>
-						<th>Tyre Diameter</th>
-						<th>Tyre Width</th>
-						<th>Tyre Ratio</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="entry in finalData">
-						<td><img src="{{entry.tyre_image_url}}" height="150" width="100"></td>
-						<td>{{entry.tyre_model}}</td>
-						<td>{{entry.brand_name}}</td>
-						<td>{{entry.diameter_value}}</td>
-						<td>{{entry.width_value}}</td>
-						<td>{{entry.ratio_value}}</td>
-					</tr>
-				</tbody>
-			</table>
+        	<div class="col-md-9">
+				<div class="row" ng-show="showItems == 1">
+                        <div class="col-md-2 offset-md-4">                     
+                           <tt>{{selectedWidth}}</tt>
+                           <tt>{{selectedDiameter}}</tt>
+                           <tt>{{selectedBrand}}</tt>                        
+                           <tt>{{selectedRatio}}</tt>                        
+                        </div>
+                        <table class="table table-condensed">
+                           <thead>
+                              <tr>
+                                 <th>Tyre Image</th>
+                                 <th>Tyre Model</th>
+                                 <th>Tyre Brand</th>
+                                 <th>Tyre Diameter</th>
+                                 <th>Tyre Width</th>
+                                 <th>Tyre Ratio</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr ng-repeat="entry in finalData">
+                                 <td><img src="{{entry.tyre_image_url}}" height="150" width="100"></td>
+                                 <td>{{entry.tyre_model}}</td>
+                                 <td>{{entry.brand_name}}</td>
+                                 <td>{{entry.diameter_value}}</td>
+                                 <td>{{entry.width_value}}</td>
+                                 <td>{{entry.ratio_value}}</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+			</div>
          </div>
       </div>
       <!-- /.container -->
@@ -126,7 +161,7 @@
          <footer>
             <div class="row">
                <div class="col-lg-12">
-                  <p>Copyright &copy; Company 2013 - Template by <a href="http://maxoffsky.com/">Maks</a>
+                  <p>Copyright &copy; Motorama 2017</p>
                   </p>
                </div>
             </div>
@@ -157,7 +192,15 @@
       	var urlTyreView = '../../js/MotoramaCatalog/motorama_catalog_tyre_view.js';
       	var finalUrl = " ";
       	
+      	$scope.showSideMenu = 0;
+      	$scope.showSearchForm = 0;
+      	$scope.showItems = 0;
       	
+      	$scope.itemConfig=function(){ 	 									
+			$scope.showSideMenu = !$scope.showSideMenu;
+	      	$scope.showSearchForm = !$scope.showSearchForm;
+	      	$scope.showItems = !$scope.showItems; 
+		}
       	
       	$scope.selectedBrand = null;
       	$scope.selectedDiameter = null;
@@ -181,7 +224,7 @@
       		.success(function(dataRatio) {
       			$scope.dataRatio = dataRatio;
       		});
-
+		
         $(document).ready(function(){	
       	function listTyres(){
       	finalUrl = urlTyreView + '?tyreBrand=' + $scope.selectedWidth + '&tyreDiameter=' + $scope.selectedDiameter + '&tyreRatio=' + $scope.selectedBrand + '&tyreWidth=' + $scope.selectedRatio;	
@@ -193,8 +236,8 @@
       		}); 
       	}
       	      		$("#search-button").click(listTyres);
-		});
-		console.log(finalUrl);
+      });
+      console.log(finalUrl);
       });
    </script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
