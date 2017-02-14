@@ -132,7 +132,7 @@
                   <input type="text" class="form-control" 
                      ng-model="selectedEntry.tyre_id" readonly> <br>                     
                   <label>Tyre Brand</label>
-                  <select id="tyre_brand" name="tyre_brand" class="form-control" disabled="disabled" onclick="enable()" ng-model="selectedEntry.tyre_brand_id" 
+                  <select id="tyre_brand" name="tyre_brand" class="form-control" disabled="disabled" ng-click="enable()" ng-model="selectedEntry.tyre_brand_id" 
                      ng-options="brand.brand_id as brand.brand_name for brand in dataBrand" ng-readonly="operation == 'show'" required="required">
                      <option value="">Brand</option>
                   </select>
@@ -143,7 +143,7 @@
                      ---->	
                   <br>
                   <label>Tyre Diameter</label>
-                  <select id="tyre_diameter" name="tyre_diameter" class="form-control" disabled="disabled" onclick="enable()" ng-model="selectedEntry.tyre_diameter_id"
+                  <select id="tyre_diameter" name="tyre_diameter" class="form-control" disabled="disabled" ng-click="enable()" ng-model="selectedEntry.tyre_diameter_id"
                      ng-options="diameter.diameter_id as diameter.diameter_value for diameter in dataDiameter" ng-readonly="operation == 'show'" required="required">
                      <option value="">Diameter</option>
                   </select>
@@ -154,7 +154,7 @@
                      --->
                   <br>
                   <label>Tyre Ratio</label>
-                  <select id="tyre_ratio" name="tyre_ratio" class="form-control" disabled="disabled" onclick="enable()" ng-model="selectedEntry.tyre_ratio_id"
+                  <select id="tyre_ratio" name="tyre_ratio" class="form-control" disabled="disabled" ng-click="enable()" ng-model="selectedEntry.tyre_ratio_id"
                      ng-options="ratio.ratio_id as ratio.ratio_value for ratio in dataRatio" ng-readonly="operation == 'show'" required="required">
                      <option value="">Ratio</option>
                   </select>
@@ -165,7 +165,7 @@
                      	--->
                   <br>
                   <label>Tyre Width</label>
-                  <select id="tyre_width" name="tyre_width" class="form-control" disabled="disabled" onclick="enable()" ng-model="selectedWidth"
+                  <select id="tyre_width" name="tyre_width" class="form-control" disabled="disabled" ng-click="enable()" ng-model="selectedEntry.tyre_width_id"
                      ng-options="width.width_id as width.width_value for width in dataWidth" ng-readonly="operation == 'show'" required="required">
                      <option value="">Width</option>
                   </select>
@@ -256,15 +256,18 @@
          		}
          	};
          		
-         	function enable() {
+         	$scope.enable = function(){
     			document.getElementById("tyre_brand").disabled=false;
     			document.getElementById("tyre_diameter").disabled=false;
     			document.getElementById("tyre_ratio").disabled=false;
     			document.getElementById("tyre_width").disabled=false;
-			}
-			 function disable() {
+			};
+			 $scope.disable = function() {
     			document.getElementById("tyre_brand").disabled=true;
-			}	
+    			document.getElementById("tyre_diameter").disabled=true;
+    			document.getElementById("tyre_ratio").disabled=true;
+    			document.getElementById("tyre_width").disabled=true;
+			};	
          		
          	$scope.setOperation = function(operation) {
                              switch (operation) {
@@ -272,7 +275,7 @@
                                      if ($scope.operation !== 'new') {
                                    	  $scope.selectedEntry = null;
                                          $scope.operation = 'new';
-                                         enable();
+                                         $scope.enable();
                                      } else {
                                          $scope.operation = 'show';
                                      }
@@ -281,7 +284,7 @@
                                       if ($scope.operation !== 'update') {
                                      	 if ($scope.selectedEntry) {
                                               $scope.operation = 'update';
-                                              enable();
+                                              $scope.enable();
                                           } else {
                                               alert("Please first select entry for updated");
                                               $scope.operation = 'show';
@@ -317,7 +320,7 @@
                    };
          
                    $scope.cancelAction = function() {
-                   	   disable();
+                   	   $scope.disable();
                        refreshData();
                    };
          

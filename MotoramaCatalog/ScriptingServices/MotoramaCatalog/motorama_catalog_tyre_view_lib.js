@@ -49,9 +49,9 @@ exports.readMotorama_catalog_tyre_viewList = function(limit, offset, sort, desc,
     	
     	if(tyreWidth){
 	        if(flag){
-	        	sql += " TYRE_DIAMETER_ID = ?";
+	        	sql += " TYRE_WIDTH_ID = ?";
 	        }else{
-	        	sql += " AND TYRE_DIAMETER_ID = ?";
+	        	sql += " AND TYRE_WIDTH_ID = ?";
 	        }
 	        flag = false;
     	}

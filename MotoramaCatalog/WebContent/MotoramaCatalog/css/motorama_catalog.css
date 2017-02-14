@@ -48,6 +48,7 @@ footer {
 .intro-backgrnd{
 	background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
 }
+
 .search-menu-dimensions {
   display: block;
   width: 50%;
@@ -68,6 +69,16 @@ footer {
 }
 .search-menu-box{
 	
+}
+
+.text-style{
+    float: left;
+    width: 50%;
+}
+
+.select-form-style{
+	width: 50%;
+	float:right
 }
 
 .search-form{
