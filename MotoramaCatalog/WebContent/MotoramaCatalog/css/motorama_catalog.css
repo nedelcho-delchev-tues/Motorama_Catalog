@@ -49,6 +49,10 @@ footer {
 	background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 .search-menu-dimensions {
   display: block;
   width: 50%;
@@ -98,6 +102,35 @@ footer {
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
+.service-banner{
+	background-image: url("http://motorama.bg:8080//services/web/MotoramaCatalog/img/motoram_service.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 50vh;
+    border-bottom: .3rem solid #EE2C2C;
+    margin-bottom: 10px;
+    height: 273px;
+}
+
+#main-container.container{
+	margin-top:25px;
+	margin-bottom:200px;
+}
+
+#nav-list.navbar-nav{
+	float:right;
+	font-weight: 700;
+    font-size: 1.550rem;
+}
+
+#service-info.col-lg-8{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
 /*
 a:hover 
 {

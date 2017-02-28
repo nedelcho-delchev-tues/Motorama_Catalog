@@ -28,6 +28,8 @@ exports.createMotorama_catalog_tyre = function() {
         sql += "TYRE_IMAGE_URL";
         sql += ",";
         sql += "TYRE_MODEL";
+        sql += ",";
+        sql += "TYRE_PRICE";
         sql += ") VALUES ("; 
         sql += "?";
         sql += ",";
@@ -54,6 +56,7 @@ exports.createMotorama_catalog_tyre = function() {
         statement.setInt(++i, requestBody.tyre_width_id);
         statement.setString(++i, requestBody.tyre_image_url);
         statement.setString(++i, requestBody.tyre_model);
+        statement.setDouble(++i, requestBody.tyre_price);
         statement.executeUpdate();
 		response.println(id);
         return id;
@@ -135,6 +138,7 @@ function createEntity(resultSet) {
 	result.tyre_width_id = resultSet.getInt("TYRE_WIDTH_ID");
     result.tyre_image_url = resultSet.getString("TYRE_IMAGE_URL");
     result.tyre_model = resultSet.getString("TYRE_MODEL");
+    result.tyre_price = resultSet.getDouble("TYRE_PRICE");
     return result;
 }
 
@@ -163,6 +167,8 @@ exports.updateMotorama_catalog_tyre = function() {
         sql += "TYRE_IMAGE_URL = ?";
         sql += ",";
         sql += "TYRE_MODEL = ?";
+        sql += ",";
+        sql += "TYRE_PRICE = ?";
         sql += " WHERE TYRE_ID = ?";
         var statement = connection.prepareStatement(sql);
         var i = 0;
@@ -172,6 +178,7 @@ exports.updateMotorama_catalog_tyre = function() {
         statement.setInt(++i, responseBody.tyre_width_id);
         statement.setString(++i, responseBody.tyre_image_url);
         statement.setString(++i, responseBody.tyre_model);
+        statement.setDouble(++i, responseBody.tyre_price);
         var id = responseBody.tyre_id;
         statement.setInt(++i, id);
         statement.executeUpdate();
@@ -270,6 +277,12 @@ exports.metadataMotorama_catalog_tyre = function() {
 		type: 'string'
 	};
     entityMetadata.properties.push(propertytyre_model);
+    
+    var propertytyre_price = {
+		name: 'tyre_price',
+		type: 'double'
+	};
+    entityMetadata.properties.push(propertytyre_price);
 
 
 	response.println(JSON.stringify(entityMetadata));

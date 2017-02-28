@@ -15,17 +15,25 @@
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
          <div class="container">
             <div class="navbar-header">
+            <!---
                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                <span class="sr-only">Toggle navigation</span>
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>           
                </button>
-               <a class="navbar-brand" href="motorama_catalog.html">Motorama</a>
+                              <a class="navbar-brand" href="motorama_catalog.html">
+               	 <img src="img/logo.png" id="logo"></img>
+               </a>
+              ---->
+              <a href="motorama_catalog.html" ng-click="reloadPage()" class="navbar-left"><img src="img/logo.png" style="width:220px"></a>
+
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-               <ul class="nav navbar-nav">
+               <ul class="nav navbar-nav" id="nav-list">
+                  <li><a href="motorama_catalog_service.html">Service</a>
+                  </li>              
                   <li><a href="motorama_catalog_add_tyre.html">Add Tyre</a>
                   </li>
                   <li><a href="motorama_catalog_add_width.html">Add Width</a>                 
@@ -42,9 +50,9 @@
          </div>
          <!-- /.container -->
       </nav>
-      <div class="container" ng-controller="ListController">
-         <div class="row">
-            <div class="col-md-3" ng-show="showSideMenu == 1">
+      <div class="container" id="main-container" ng-controller="ListController">
+         <div class="row border-between">
+            <div class="col-md-3" ng-show="showSideMenu == 1" ng-cloak> 
                <p class="lead">Dimensions</p>
                <div class="clear-space">
                   <select id="tyre_brand" name="tyre_brand" class="search-menu-dimensions" ng-change="changeItems()" ng-model="selectedBrand"
@@ -83,7 +91,7 @@
                   </div>
                   ---->
             </div>
-            <div class="col-md-9" ng-show="showSearchForm == 0">
+            <div class="col-md-9 col-md-push-3" ng-show="showSearchForm == 0">
                <form class="form-horizontal" ng-submit="GetData">
                   <fieldset>
                      <!-- Form Name -->
@@ -130,8 +138,21 @@
                   </fieldset>
                </form>
             </div>
+            <!---
+            <div class="col-md-3 col-md-pull-9" ng-show="showSearchForm == 0">
+            <p class="lead">Brands</p>
+                  	    <table>
+				         <tr ng-repeat="brand in dataBrand">
+				            <td>
+				                <input type="checkbox" ng-model="selectedBrand"/>{{brand.brand_name}}
+				            </td>
+				        </tr>
+				    </table>
+				    <div>Selected: {{selectedBrand}}</div>
+            </div>
+            --->
             <div class="col-md-9">
-               <div class="row" ng-show="showItems == 1">
+               <div class="row" ng-show="showItems == 1" ng-cloak>
                   <table class="table table-condensed">
                      <thead>
                         <tr>
@@ -141,6 +162,7 @@
                            <th>Tyre Diameter</th>
                            <th>Tyre Ratio</th>
                            <th>Tyre Width</th>
+                           <th>Tyre Price</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -151,6 +173,7 @@
                            <td>{{entry.diameter_value}}</td>
                            <td>{{entry.ratio_value}}</td>
                            <td>{{entry.width_value}}</td>
+                           <td>{{entry.tyre_price}}</td>
                         </tr>
                      </tbody>
                   </table>
@@ -186,7 +209,7 @@
    </body>
    <script type="text/javascript">
       angular.module('page', ['ngAnimate', 'ui.bootstrap']);
-      angular.module('page').controller('ListController', function ($scope, $http, $location) {
+      angular.module('page').controller('ListController', function ($scope, $http ) {
       	
       	var urlBrand = '../../js/MotoramaCatalog/motorama_catalog_tyre_brand.js';
       	var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
@@ -198,16 +221,18 @@
       	$scope.showSideMenu = 0;
       	$scope.showSearchForm = 0;
       	$scope.showItems = 0;
+      	$scope.counter = 0;
       	
       	$scope.selectedBrand = null;
       	$scope.selectedDiameter = null;
       	$scope.selectedRatio = null;
       	$scope.selectedWidth = null;
+      	      	
+      	$scope.reloadPage = function(){$window.location.reload()}
       	
       	$http.get(urlWidth)
       		.success(function(dataWidth) {
       			$scope.dataWidth = dataWidth;
-      			console.log(dataWidth);
       		});
       	$http.get(urlDiameter)
       		.success(function(dataDiameter) {
@@ -221,35 +246,27 @@
       		.success(function(dataRatio) {
       			$scope.dataRatio = dataRatio;
       		});
-      
+           
       $scope.itemConfig=function(){ 	 									
-      $scope.showSideMenu = !$scope.showSideMenu;
+      	$scope.showSideMenu = !$scope.showSideMenu;
        	$scope.showSearchForm = !$scope.showSearchForm;
        	$scope.showItems = !$scope.showItems; 
       }
-      	
       $scope.changeItems = function(){
       finalUrl = urlTyreView + '?tyreBrand=' + $scope.selectedBrand + '&tyreDiameter=' + $scope.selectedDiameter + '&tyreRatio=' + $scope.selectedRatio + '&tyreWidth=' + $scope.selectedWidth;	
       		$http.get(finalUrl)    
       		.success(function(finalData) {
       			$scope.finalData = finalData;
-      			console.log(finalData);
+      			//console.log(finalData);
       		}); 
       }
       
-        $(document).ready(function(){	
-      	function listTyres(){
-      	finalUrl = urlTyreView + '?tyreBrand=' + $scope.selectedBrand + '&tyreDiameter=' + $scope.selectedDiameter + '&tyreRatio=' + $scope.selectedRatio + '&tyreWidth=' + $scope.selectedWidth;	
-        console.log(finalUrl);
-      	$http.get(finalUrl)    
-      		.success(function(finalData) {
-      			$scope.finalData = finalData;
-      			console.log(finalData);
-      		}); 
+      $(document).ready(function(){	
+      function listTyres(){
+      $scope.changeItems();
       	}
       	      		$("#search-button").click(listTyres);
       });
-      console.log(finalUrl);
       });
    </script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

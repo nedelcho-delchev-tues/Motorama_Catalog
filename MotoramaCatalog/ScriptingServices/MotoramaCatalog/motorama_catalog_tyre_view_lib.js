@@ -99,6 +99,7 @@ function createEntity(resultSet) {
 	result.width_value = resultSet.getInt("WIDTH_VALUE");
 	result.tyre_ratio_id = resultSet.getInt("TYRE_RATIO_ID");
 	result.ratio_value = resultSet.getInt("RATIO_VALUE");
+	result.tyre_price = resultSet.getDouble("TYRE_PRICE");
     return result;
 }
 
@@ -202,6 +203,11 @@ exports.metadataMotorama_catalog_tyre_view = function() {
 	};
     entityMetadata.properties.push(propertyratio_value);
 
+	var propertytyre_price = {
+		name: 'tyre_price',
+		type: 'double'
+	};
+    entityMetadata.properties.push(propertyratio_value);
 
 	response.println(JSON.stringify(entityMetadata));
 };

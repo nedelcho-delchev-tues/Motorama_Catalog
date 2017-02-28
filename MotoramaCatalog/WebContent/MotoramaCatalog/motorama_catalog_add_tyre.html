@@ -81,6 +81,7 @@
                <th>Tyre Width</th>
                <th>Tyre Image URL</th>
                <th>Tyre Model</th>
+               <th>Tyre Price</th>
             </tr>
          </thead>
          <tbody>
@@ -93,6 +94,7 @@
                <td>{{entry.tyre_width_id}}</td>
                <td>{{entry.tyre_image_url}}</td>
                <td>{{entry.tyre_model}}</td>
+               <td>{{entry.tyre_price}}</td>
             </tr>
          </tbody>
       </table>
@@ -185,6 +187,11 @@
                      ng-model="selectedEntry.tyre_model"
                      ng-readonly="operation == 'show'" required="required">
                   <br>
+                  <label>Tyre Price</label>
+                  <input type="text" class="form-control" 
+                     ng-model="selectedEntry.tyre_price"
+                     ng-readonly="operation == 'show'" required="required">
+                  <br>
                </div>
                <!-- save and cancel buttons -->
                <div class="btn-group">
@@ -204,8 +211,8 @@
          angular.module('page', ['ngAnimate', 'ui.bootstrap']);
          angular.module('page').controller('ManageController', function ($scope, $http) {
          	
-         	var url = '../../js/MotoramaCatalog/motorama_catalog_tyre.js';
-         	var urlTyreView = '../../js/MotoramaCatalog/motorama_catalog_tyre_view.js';
+	         	var url = '../../js/MotoramaCatalog/motorama_catalog_tyre.js';
+	         	var urlTyreView = '../../js/MotoramaCatalog/motorama_catalog_tyre_view.js';
               	var urlBrand = '../../js/MotoramaCatalog/motorama_catalog_tyre_brand.js';
               	var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
               	var urlRatio = '../../js/MotoramaCatalog/motorama_catalog_tyre_ratio.js';

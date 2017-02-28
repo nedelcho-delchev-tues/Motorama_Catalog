@@ -64,5 +64,14 @@
         "primaryKey":"false",
         "defaultValue":""
       }
+            ,
+      {
+        "name":"TYRE_PRICE",
+        "type":"DOUBLE",
+        "length":"52",
+        "notNull":"false",
+        "primaryKey":"false",
+        "defaultValue":""
+      }
     ]
 }
