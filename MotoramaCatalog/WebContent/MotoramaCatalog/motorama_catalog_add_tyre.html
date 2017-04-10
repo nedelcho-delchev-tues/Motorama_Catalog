@@ -44,11 +44,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="motorama_catalog.html">Motorama</a>
+                        <a href="motorama_catalog.html" class="navbar-left"><img src="img/logo.png" style="width:220px"></a>
                      </div>
                      <!-- Collect the nav links, forms, and other content for toggling -->
                      <div class="collapse navbar-collapse navbar-ex1-collapse">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" id="nav-list">
+                           <li><a href="motorama_catalog_service.html">Service</a>
+                           </li>
                            <li><a href="motorama_catalog_add_tyre.html">Add Tyre</a>
                            </li>
                            <li><a href="motorama_catalog_add_width.html">Add Width</a>                 
@@ -211,8 +213,8 @@
          angular.module('page', ['ngAnimate', 'ui.bootstrap']);
          angular.module('page').controller('ManageController', function ($scope, $http) {
          	
-	         	var url = '../../js/MotoramaCatalog/motorama_catalog_tyre.js';
-	         	var urlTyreView = '../../js/MotoramaCatalog/motorama_catalog_tyre_view.js';
+          	var url = '../../js/MotoramaCatalog/motorama_catalog_tyre.js';
+          	var urlTyreView = '../../js/MotoramaCatalog/motorama_catalog_tyre_view.js';
               	var urlBrand = '../../js/MotoramaCatalog/motorama_catalog_tyre_brand.js';
               	var urlDiameter = '../../js/MotoramaCatalog/motorama_catalog_tyre_diameter.js';
               	var urlRatio = '../../js/MotoramaCatalog/motorama_catalog_tyre_ratio.js';
@@ -264,17 +266,17 @@
          	};
          		
          	$scope.enable = function(){
-    			document.getElementById("tyre_brand").disabled=false;
-    			document.getElementById("tyre_diameter").disabled=false;
-    			document.getElementById("tyre_ratio").disabled=false;
-    			document.getElementById("tyre_width").disabled=false;
-			};
-			 $scope.disable = function() {
-    			document.getElementById("tyre_brand").disabled=true;
-    			document.getElementById("tyre_diameter").disabled=true;
-    			document.getElementById("tyre_ratio").disabled=true;
-    			document.getElementById("tyre_width").disabled=true;
-			};	
+         document.getElementById("tyre_brand").disabled=false;
+         document.getElementById("tyre_diameter").disabled=false;
+         document.getElementById("tyre_ratio").disabled=false;
+         document.getElementById("tyre_width").disabled=false;
+         };
+         $scope.disable = function() {
+         document.getElementById("tyre_brand").disabled=true;
+         document.getElementById("tyre_diameter").disabled=true;
+         document.getElementById("tyre_ratio").disabled=true;
+         document.getElementById("tyre_width").disabled=true;
+         };	
          		
          	$scope.setOperation = function(operation) {
                              switch (operation) {
